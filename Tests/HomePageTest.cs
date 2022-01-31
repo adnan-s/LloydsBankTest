@@ -1,10 +1,13 @@
-﻿using System;
+﻿using LloydsBankGroup.Test.Pages;
+using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace LloydsBankGroup.Test.Tests
 {
-    class HomePageTest
+    public class HomePageTest : DriverHelper
     {
+
     }
 }

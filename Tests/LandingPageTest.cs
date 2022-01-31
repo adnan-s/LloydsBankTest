@@ -42,5 +42,59 @@ namespace LloydsBankGroup.Test.Tests
             Thread.Sleep(2000);
             Driver.Quit();
         }
+
+        [Test]
+        public void PlatinumAccountFee()
+        {
+            string title = "Open a Current Account Online | UK Bank Accounts | Lloyds Bank";
+            string platinumMonthlyFee = "£21 per month";
+
+            // Act
+            Driver.Navigate().GoToUrl("https://www.lloydsbank.com/current-accounts.html");
+            Actions actions = new Actions(Driver);
+            string fee = Driver.FindElement(By.XPath("//*[@id='main']/div[4]/div/div/div/div/div[2]/div/div/div/div[3]/div/div/div/div/div[2]/p/span/strong"))
+                .Text;
+
+            string actualTitle = Driver.Title;
+
+            // Assert
+            Assert.That(actualTitle, Is.EqualTo(title));
+            Assert.That(fee, Is.EqualTo(platinumMonthlyFee));
+            Thread.Sleep(2000);
+            Driver.Quit();
+        }
+
+        [Test]
+        public void CruntAccountClick()
+        {
+            string title = "Open a Current Account Online | UK Bank Accounts | Lloyds Bank";
+            string[] accountTypes = {"Classic account","Club Lloyds account","Platinum account" };
+
+            // Act
+            Driver.Navigate().GoToUrl("https://www.lloydsbank.com/current-accounts.html");
+            Actions actions = new Actions(Driver);
+
+
+
+            string acc1 = Driver.FindElement(By.XPath("//*[@id='main']/div[4]/div/div/div/div/div[2]/div/div/div/div[1]/div/div/div/div/div[1]/h2/span"))
+                .Text;
+            string acc2 = Driver.FindElement(By.XPath("//*[@id='main']/div[4]/div/div/div/div/div[2]/div/div/div/div[2]/div/div/div/div/div[1]/h2/span"))
+                .Text;
+            string acc3 = Driver.FindElement(By.XPath("//*[@id='main']/div[4]/div/div/div/div/div[2]/div/div/div/div[3]/div/div/div/div/div[1]/h2/span"))
+                .Text;
+
+            string actualTitle = Driver.Title;
+
+
+            // Assert
+            Assert.That(actualTitle, Is.EqualTo(title));
+            Assert.That(acc1, Is.EqualTo(accountTypes[0]));
+            Assert.That(acc2, Is.EqualTo(accountTypes[1]));
+            Assert.That(acc3, Is.EqualTo(accountTypes[2]));
+
+            Thread.Sleep(2000);
+            Driver.Quit();
+        }
+
     }
 }
